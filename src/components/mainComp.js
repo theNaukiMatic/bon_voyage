@@ -10,6 +10,7 @@ import {
 import LoginComp from "./auth/login";
 import SignUpComp from "./auth/signUp";
 import NavBar from "./navbar";
+import PlannerComp from "./planner";
 
 export default function MainComp() {
 	return (
@@ -21,6 +22,9 @@ export default function MainComp() {
 				<Grid item>
 					<Container>
 						<Switch>
+							<Route exact path="/">
+								<PlannerComp />
+							</Route>
 							<Route path="/login">
 								<LoginComp />
 							</Route>
