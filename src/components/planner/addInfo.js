@@ -30,7 +30,7 @@ export default function AddInfo() {
 							id="date"
 							label="Start Date"
 							type="date"
-							defaultValue="2017-05-24"
+							defaultValue="2021-04-08"
 							InputLabelProps={{
 								shrink: true,
 							}}
@@ -41,7 +41,16 @@ export default function AddInfo() {
 							id="date"
 							label="Start Time"
 							type="time"
-							// defaultValue="2017-05-24"
+							InputLabelProps={{
+								shrink: true,
+							}}
+						/>
+					</Grid>
+					<Grid item>
+						<TextField
+							id="date"
+							label="End Time"
+							type="time"
 							InputLabelProps={{
 								shrink: true,
 							}}

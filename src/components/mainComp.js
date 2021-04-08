@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import LoginComp from "./auth/login";
 import SignUpComp from "./auth/signUp";
 import NavBar from "./navbar";
+import Footer from "./navbar/footer";
 import PlannerComp from "./planner";
 
 export default function MainComp() {
@@ -27,6 +28,9 @@ export default function MainComp() {
 							</Route>
 						</Switch>
 					</Container>
+				</Grid>
+				<Grid item>
+					<Footer />
 				</Grid>
 			</Grid>
 		</>

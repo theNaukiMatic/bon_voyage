@@ -6,7 +6,7 @@ export default function PlannerComp() {
 	return (
 		<>
 			<Typography variant="h2" style={{ marginTop: "40px" }}>
-				Welcome to Bon-voyage !
+				Welcome to bon-voyage !
 			</Typography>
 			<Typography variant="h6" style={{ color: "gray" }}>
 				One stop for all your trip planning needs.
