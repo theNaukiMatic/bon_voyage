@@ -21,7 +21,7 @@ const loginSlice = createSlice({
 			...state,
 			isLoading: false,
 			isAuthenticated: true,
-			errMess: "",
+			errMess: null,
 			token: action.token,
 			userId: action.user.userId,
 		}),
@@ -90,48 +90,25 @@ export const loginUser = (creds) => (dispatch) => {
 		},
 		data: creds,
 	};
-	return axios(call).then((response) => {
-		console.log(response);
-	});
-
-	// return fetch(baseUrl + "users/login", {
-	// 	method: "Post",
-	// 	headers: {
-	// 		"Content-Type": "application/json",
-	// 	},
-	// 	body: JSON.stringify(creds),
-	// })
-	// 	.then(
-	// 		(response) => {
-	// 			if (response.ok) {
-	// 				return response;
-	// 			} else {
-	// 				var error = new Error(
-	// 					"Error " + response.status + ": " + response.statusText
-	// 				);
-	// 				error.response = response;
-	// 				throw error;
-	// 			}
-	// 		},
-	// 		(error) => {
-	// 			throw error;
-	// 		}
-	// 	)
-	// 	.then((response) => response.json())
-	// 	.then((response) => {
-	// 		if (response.success) {
-	// 			// If login was successful, set the token in local storage
-	// 			localStorage.setItem("token", response.token);
-	// 			localStorage.setItem("userId", response.userId);
-	// 			dispatch(receiveLogin(response));
-	// 		} else {
-	// 			var error = new Error("Error " + response.status);
-	// 			error.response = response;
-	// 			alert(error.message);
-	// 			throw error;
-	// 		}
-	// 	})
-	// 	.catch((error) => dispatch(loginError(error.message)));
+	return axios(call)
+		.then((response) => {
+			if (response.data.success) {
+				localStorage.setItem("token", response.data.token);
+				localStorage.setItem("userId", response.data.userId);
+				dispatch(receiveLogin(response.data));
+				alert("Login success");
+			} else {
+				var error = new Error("Error " + response.data.status);
+				error.response = response;
+				alert(error.message);
+				throw error;
+			}
+		})
+		.catch((error) => {
+			dispatch(loginError(error.message));
+			// console.log(error);
+			alert(error);
+		});
 };
 
 export const requestLogout = () => {
@@ -145,57 +122,34 @@ export const receiveLogout = () => {
 		type: logoutSuccess.type,
 	};
 };
-
 // Logs the user out
 export const logoutUser = () => (dispatch) => {
 	dispatch(requestLogout());
-	localStorage.removeItem("token");
-	console.log("logout started");
-	return fetch(baseUrl + "users/logout", {
-		method: "Get",
+	const call = {
+		url: baseUrl + "users/logout",
+		method: "GET",
 		headers: {
 			"Content-Type": "application/json",
 		},
-	})
-		.then(
-			(response) => {
-				if (response.ok) {
-					console.log("reached here!");
-
-					return response;
-				} else {
-					console.log("reached error else!");
-
-					var error = new Error(
-						"Error " + response.status + ": " + response.statusText
-					);
-					error.response = response;
-					throw error;
-				}
-			},
-			(error) => {
-				console.log("reached error!");
-				throw error;
-			}
-		)
-		.then((response) => response.json())
+	};
+	return axios(call)
 		.then((response) => {
-			if (response.success) {
-				console.log("response.success");
+			if (response.data.success) {
 				localStorage.removeItem("token");
 				localStorage.removeItem("userId");
 				dispatch(receiveLogout());
+				alert("logout success");
 			} else {
-				// console.log("resopnse.error");
-				var error = new Error("Error " + response.status);
+				var error = new Error("Error " + response.data.status);
 				error.response = response;
-				// alert(error.message);
+				alert(error.message);
 				throw error;
 			}
 		})
-		.catch((error) =>
-			console.log("there was an error during logout! : " + error)
-		);
+		.catch((error) => {
+			dispatch(loginError(error.message));
+			alert(error);
+		});
 };
 
 export default loginSlice.reducer;

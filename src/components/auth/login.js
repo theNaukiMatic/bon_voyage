@@ -1,19 +1,35 @@
 import { Card, CardContent, Typography } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 import { TextField, Grid, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { useHistory } from "react-router-dom";
-// import { AiFillGoogleCircle } from "react-icons/ai";
+import { Redirect, useHistory } from "react-router-dom";
+// import LoadingComp from "../loadingComp";
+
+//redux functions
+import { loginUser } from "../../store/features/auth/loginSlice";
+import { useDispatch, useSelector } from "react-redux";
 const useStyles = makeStyles((theme) => ({
 	root: { flexGrow: 1 },
 	card: { flexGrow: 1 },
 }));
 
 export default function LoginComp() {
+	const auth = useSelector((state) => state.auth.login);
 	const classes = useStyles();
 	const history = useHistory();
+	const dispatch = useDispatch();
+	const [userName, setUserName] = useState("");
+	const [passWord, setPassword] = useState("");
+	if (auth.isAuthenticated) {
+		return <Redirect to="/" />;
+	}
 	function handleSignInButton() {
 		history.push("/signup");
+	}
+	function handleLoginSubmit(e) {
+		e.preventDefault();
+		const creds = { username: userName, password: passWord };
+		dispatch(loginUser(creds));
 	}
 	return (
 		<>
@@ -44,6 +60,10 @@ export default function LoginComp() {
 								<TextField
 									label="Email"
 									type="email"
+									value={userName}
+									onChange={(e) =>
+										setUserName(e.target.value)
+									}
 									required
 									autoComplete="current-email"
 									style={{ width: "100%" }}
@@ -54,6 +74,10 @@ export default function LoginComp() {
 									id="standard-password-input"
 									label="Password"
 									type="password"
+									value={passWord}
+									onChange={(e) =>
+										setPassword(e.target.value)
+									}
 									required
 									autoComplete="current-password"
 									style={{ width: "100%" }}
@@ -80,6 +104,7 @@ export default function LoginComp() {
 										color="secondary"
 										variant="contained"
 										style={{ width: "100%" }}
+										onClick={(e) => handleLoginSubmit(e)}
 									>
 										Login
 									</Button>
