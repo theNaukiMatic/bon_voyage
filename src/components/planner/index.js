@@ -1,4 +1,4 @@
-import { Divider, Typography, Grid, Button } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import React from "react";
 import PlannerFormComp from "./plannerForm";
 
@@ -11,7 +11,6 @@ export default function PlannerComp() {
 			<Typography variant="h6" style={{ color: "gray" }}>
 				One stop for all your trip planning needs.
 			</Typography>
-			{/* <Divider /> */}
 
 			<PlannerFormComp />
 		</>

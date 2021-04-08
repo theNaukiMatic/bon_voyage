@@ -8,11 +8,6 @@ import {
 	TextField,
 } from "@material-ui/core";
 
-import DateFnsUtils from "@date-io/date-fns";
-import {
-	KeyboardDatePicker,
-	MuiPickersUtilsProvider,
-} from "@material-ui/pickers";
 import React from "react";
 const useStyles = makeStyles((theme) => ({
 	formControl: {
@@ -23,9 +18,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddInfo() {
 	const classes = useStyles();
-	const [selectedDate, setSelectedDate] = React.useState(
-		new Date("2014-08-18T21:11:54")
-	);
+	// const [selectedDate, setSelectedDate] = React.useState(
+	// 	new Date("2014-08-18T21:11:54")
+	// );
 	return (
 		<FormControl>
 			<Grid container direction="column" spacing={4}>

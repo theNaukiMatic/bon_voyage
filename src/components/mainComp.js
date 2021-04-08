@@ -1,12 +1,6 @@
 import { Container, Grid } from "@material-ui/core";
 import React from "react";
-import {
-	Route,
-	useLocation,
-	RouterLink,
-	Routes,
-	Switch,
-} from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import LoginComp from "./auth/login";
 import SignUpComp from "./auth/signUp";
 import NavBar from "./navbar";

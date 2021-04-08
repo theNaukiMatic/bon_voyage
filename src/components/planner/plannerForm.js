@@ -5,14 +5,7 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import {
-	Divider,
-	FormControl,
-	Grid,
-	InputLabel,
-	MenuItem,
-	Select,
-} from "@material-ui/core";
+import { Divider } from "@material-ui/core";
 import ChooseCity from "./chooseCity";
 import AddInfo from "./addInfo";
 import InterestComp from "./interest";
