@@ -22,7 +22,6 @@ const cityInfoSlice = createSlice({
 		cityInfoFailed: (state, action) => ({
 			...state,
 			isLoading: false,
-			isAuthenticated: false,
 			errMess: action.message,
 		}),
 	},
@@ -65,7 +64,6 @@ export const getCityData = (cityName) => (dispatch) => {
 	return axios(call)
 		.then((response) => {
 			dispatch(receiveCityInfo(response.data.results));
-			// alert("city info success");
 		})
 		.catch((error) => {
 			dispatch(cityInfoError(error.message));
