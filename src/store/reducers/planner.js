@@ -1,7 +1,6 @@
 import { combineReducers } from "redux";
-import authReducer from "./auth";
-import cityInfoReducer from "./planner";
+import cityInfoReducer from "../features/planner/cityInfoSlice";
+
 export default combineReducers({
-	auth: authReducer,
 	cityInfo: cityInfoReducer,
 });
