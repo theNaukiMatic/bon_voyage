@@ -44,9 +44,16 @@ const OnePlace = ({ city, addCity, removeCity }) => {
 				elevation={10}
 				style={{
 					width: "400px",
+					// minHeight: "500px",
 				}}
 			>
-				<CardContent>
+				{/* <img
+					// style={{ maxHeight: "400px", width: "100%" }}
+					src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${city.photos[0].photo_reference}&key=AIzaSyArM7cAmAWdHA2I6iL0XLLo979LOyy-920`}
+					alt={city.name}
+				/> */}
+				<CardContent style={{ marginBottom: "auto" }}>
+					{" "}
 					<Typography variant="h5">
 						<img
 							src={city.icon}

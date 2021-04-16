@@ -16,10 +16,7 @@ export default function HomeComp() {
 				One Stop for all your travel planning needs.
 			</Typography>
 			<Divider style={{ marginTop: "20px", marginBottom: "20px" }} />
-			<Paper className={classes.paper} elevation={10}>
-				<Typography variant="h2">Start Planning Your Trip</Typography>
-				<ChooseCity />
-			</Paper>
+			<ChooseCity />
 		</>
 	);
 }
