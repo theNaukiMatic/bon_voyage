@@ -3,10 +3,7 @@ import {
 	Divider,
 	FormControl,
 	Grid,
-	InputLabel,
 	makeStyles,
-	MenuItem,
-	Select,
 	TextField,
 	Typography,
 } from "@material-ui/core";
@@ -25,7 +22,16 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function AddInfo() {
+export default function AddInfo({
+	tripDate,
+	setTripDate,
+	startTime,
+	setStartTime,
+	endTime,
+	setEndTime,
+	startLocId,
+	setStartLocId,
+}) {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const [startLoc, setStartLoc] = React.useState("");
@@ -51,9 +57,10 @@ export default function AddInfo() {
 						<Grid item>
 							<TextField
 								id="date"
-								label="Start Date"
+								label="Trip Date"
 								type="date"
-								defaultValue="2021-04-08"
+								value={tripDate}
+								onChange={(e) => setTripDate(e.target.value)}
 								InputLabelProps={{
 									shrink: true,
 								}}
@@ -61,9 +68,11 @@ export default function AddInfo() {
 						</Grid>
 						<Grid item>
 							<TextField
-								id="date"
+								id="startTime"
 								label="Start Time"
+								value={startTime}
 								type="time"
+								onChange={(e) => setStartTime(e.target.value)}
 								InputLabelProps={{
 									shrink: true,
 								}}
@@ -71,9 +80,11 @@ export default function AddInfo() {
 						</Grid>
 						<Grid item>
 							<TextField
-								id="date"
+								id="endTime"
 								label="End Time"
+								value={endTime}
 								type="time"
+								onChange={(e) => setEndTime(e.target.value)}
 								InputLabelProps={{
 									shrink: true,
 								}}
@@ -106,7 +117,7 @@ export default function AddInfo() {
 						</Grid>
 					</Grid>
 					<Grid item>
-						<StartLocComp />
+						<StartLocComp setStartLocId={setStartLocId} />
 					</Grid>
 				</Grid>
 			</FormControl>

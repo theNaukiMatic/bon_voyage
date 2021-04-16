@@ -1,14 +1,8 @@
-import { Divider, makeStyles, Paper, Typography } from "@material-ui/core";
+import { Divider, Typography } from "@material-ui/core";
 import React from "react";
 import ChooseCity from "./planner/chooseCity";
-const useStyles = makeStyles((theme) => ({
-	formControl: {
-		minWidth: 120,
-	},
-	paper: { padding: 50 },
-}));
+
 export default function HomeComp() {
-	const classes = useStyles();
 	return (
 		<>
 			<Typography variant="h1"> Welcome to bon voyage !</Typography>

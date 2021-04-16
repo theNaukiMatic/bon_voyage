@@ -1,18 +1,13 @@
 import {
 	Button,
-	FormControl,
-	Grid,
-	InputLabel,
 	makeStyles,
-	MenuItem,
 	Paper,
-	Select,
 	TextField,
 	Typography,
 } from "@material-ui/core";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router";
+import { useHistory } from "react-router";
 import { getCityData } from "../../store/features/planner/cityInfoSlice";
 
 const useStyles = makeStyles((theme) => ({

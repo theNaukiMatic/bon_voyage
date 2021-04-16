@@ -1,26 +1,22 @@
 import {
-	Button,
 	Card,
 	CardActionArea,
-	CardContent,
 	Divider,
 	Grid,
 	makeStyles,
 	Typography,
 } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import LoadingComp from "../loadingComp";
 
 const useStyles = makeStyles({
 	selected: {
-		backgroundColor: "lightgrey",
+		backgroundColor: "lightblue",
 	},
 	normal: {},
 });
 const OnePlace = ({ city, selectCity, SelectedCity }) => {
-	const [buttonText, setButtonText] = useState("Add City");
-	const [buttonStyle, setButtonStyle] = useState("outlined");
 	const classes = useStyles();
 
 	return (
@@ -88,16 +84,17 @@ const SearchDisplay = ({ data, selectCity, SelectedCity }) => {
 	);
 };
 
-export default function StartLocComp() {
+export default function StartLocComp({ setStartLocId }) {
 	const data = useSelector((state) => state.cityInfo.startLoc);
 	const [SelectedCity, setSelectedCity] = useState("");
 	const selectCity = (city) => {
 		console.log("city added" + city);
 		setSelectedCity(city);
+		setStartLocId(city);
 	};
-	useEffect(() => {
-		console.log(SelectedCity);
-	}, [SelectedCity]);
+	// useEffect(() => {
+	// 	console.log(SelectedCity);
+	// }, [SelectedCity]);
 
 	return (
 		<>

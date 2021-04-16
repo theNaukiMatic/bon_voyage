@@ -1,16 +1,14 @@
 import { Container, Grid } from "@material-ui/core";
-import { GoogleApiWrapper } from "google-maps-react";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import LoginComp from "./auth/login";
 import SignUpComp from "./auth/signUp";
-import SimpleMap from "./mapsAPI/simpleMap";
+// import SimpleMap from "./mapsAPI/simpleMap";
 import NavBar from "./navbar";
 import Footer from "./navbar/footer";
-import PlannerComp from "./planner";
-import LocationSearchInput from "./mapsAPI/autoComplete";
 import HomeComp from "./homeComp";
 import InterestComp from "./planner/interest";
+import TripResultComp from "./planner/result";
 
 export default function MainComp() {
 	return (
@@ -24,7 +22,6 @@ export default function MainComp() {
 						<Switch>
 							<Route exact path="/">
 								{/* <SimpleMap /> */}
-								{/* <LocationSearchInput /> */}
 
 								<HomeComp />
 							</Route>
@@ -33,6 +30,9 @@ export default function MainComp() {
 							</Route>
 							<Route path="/chooseInterest">
 								<InterestComp />
+							</Route>
+							<Route path="/trip">
+								<TripResultComp />
 							</Route>
 							<Route path="/signup">
 								<SignUpComp />
