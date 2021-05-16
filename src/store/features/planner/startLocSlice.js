@@ -55,7 +55,7 @@ export const startLocError = (message) => {
 export const getStartLoc = (query) => (dispatch) => {
 	dispatch(requestStartLoc());
 	const call = {
-		url: `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${query}&inputtype=textquery&fields=place_id,name,formatted_address,type&key=AIzaSyArM7cAmAWdHA2I6iL0XLLo979LOyy-920`,
+		url: `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${query}&inputtype=textquery&fields=place_id,name,formatted_address,type&key=AIzaSyCH-n1ukoItZpb2gin5Ik8Vn2Hczdz0I5E`,
 		method: "GET",
 		Headers: {
 			"Content-Type": "application/json",

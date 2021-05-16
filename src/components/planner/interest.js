@@ -47,7 +47,7 @@ const OnePlace = ({ city, addCity, removeCity }) => {
 			>
 				{/* <img
 					// style={{ maxHeight: "400px", width: "100%" }}
-					src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${city.photos[0].photo_reference}&key=AIzaSyArM7cAmAWdHA2I6iL0XLLo979LOyy-920`}
+					src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${city.photos[0].photo_reference}&key=AIzaSyCH-n1ukoItZpb2gin5Ik8Vn2Hczdz0I5E`}
 					alt={city.name}
 				/> */}
 				<CardActionArea
@@ -108,7 +108,6 @@ const DataDisplay = ({ data, addCity, removeCity, SelectedCity }) => {
 	const [startLocId, setStartLocId] = useState("");
 
 	function handleFinalSubmit() {
-		
 		const start = timeConverter(startTime);
 		const end = timeConverter(endTime);
 		const date = dateConverter(tripDate) + " " + timeConverter(startTime);
@@ -123,7 +122,7 @@ const DataDisplay = ({ data, addCity, removeCity, SelectedCity }) => {
 		};
 		dispatch(sendTripForm(dataPacket));
 		console.log(dataPacket);
-		// Redirect("/trip");
+		Redirect("/trip");
 	}
 
 	return (
@@ -165,7 +164,7 @@ const DataDisplay = ({ data, addCity, removeCity, SelectedCity }) => {
 				style={{ marginTop: "20px" }}
 				onClick={handleFinalSubmit}
 			>
-				<Typography variant="h4" >Generate Trip Plan !</Typography>
+				<Typography variant="h4">Generate Trip Plan !</Typography>
 			</Button>
 		</>
 	);

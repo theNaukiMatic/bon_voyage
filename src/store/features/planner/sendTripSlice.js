@@ -59,16 +59,16 @@ export const sendTripForm = (dataPacket) => (dispatch) => {
 		method: "post",
 		Headers: {
 			"Content-Type": "application/json",
-			// Authorization: "Bearer " + localStorage.getItem("token"),
-			"Authorization":
-				"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDc0YTNmZTJjZmU2MjUwMDBjZTQzNjQiLCJpYXQiOjE2MTg1NjMzOTksImV4cCI6MTYyMjE2MzM5OX0.TVG1jylt7WZpaOqinCQASsdU71NtNkVZzxMru11OnTc",
+			Authorization: "Bearer " + localStorage.getItem("token"),
+			// "Authorization":
+			// 	"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDc0YTNmZTJjZmU2MjUwMDBjZTQzNjQiLCJpYXQiOjE2MTg1NjMzOTksImV4cCI6MTYyMjE2MzM5OX0.TVG1jylt7WZpaOqinCQASsdU71NtNkVZzxMru11OnTc",
 		},
 		data: {
-			cityName:dataPacket.cityName,
-			start:dataPacket.start,
-			end:dataPacket.end,
-			date:dataPacket.date,
-			placeId:dataPacket.placeId
+			tripName: dataPacket.cityName,
+			start: dataPacket.start,
+			end: dataPacket.end,
+			date: dataPacket.date,
+			placeId: dataPacket.placeId,
 		},
 	};
 	return axios(call)

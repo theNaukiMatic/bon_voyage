@@ -1,3 +1,3 @@
 // export const baseUrl = "https://bonvoyage-backend.herokuapp.com/";
-export const baseUrl = "https://79ce9bce23b3.ngrok.io/"
-export const gMapsKey = "";
+export const baseUrl = "https://bb5467f2fd22.ngrok.io/";
+// export const gMapsKey = "";

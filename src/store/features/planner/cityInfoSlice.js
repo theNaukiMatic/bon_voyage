@@ -54,7 +54,7 @@ export const cityInfoError = (message) => {
 export const getCityData = (cityName) => (dispatch) => {
 	dispatch(requestCityInfo());
 	const call = {
-		url: `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${cityName}&type=tourist_attraction&rankby=prominence&key=AIzaSyArM7cAmAWdHA2I6iL0XLLo979LOyy-920`,
+		url: `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${cityName}&type=tourist_attraction&rankby=prominence&key=AIzaSyCH-n1ukoItZpb2gin5Ik8Vn2Hczdz0I5E`,
 		method: "GET",
 		Headers: {
 			"Content-Type": "application/json",
