@@ -7,7 +7,7 @@ import {
 	CardActionArea,
 	Divider,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingComp from "../loadingComp";
 import ChooseCity from "./chooseCity";
@@ -92,6 +92,7 @@ const OnePlace = ({ city, addCity, removeCity }) => {
 //this componrnt will handle all the data
 const DataDisplay = ({ data, addCity, removeCity, SelectedCity }) => {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	function dateConverter(date) {
 		var dateParts = date.split("-");
 		var newDate = dateParts[2] + "/" + dateParts[1] + "/" + dateParts[0];
@@ -106,6 +107,13 @@ const DataDisplay = ({ data, addCity, removeCity, SelectedCity }) => {
 	const [startTime, setStartTime] = useState("09:00");
 	const [endTime, setEndTime] = useState("18:00");
 	const [startLocId, setStartLocId] = useState("");
+
+	const temp = useSelector((state) => state.cityInfo.sendTrip);
+	useEffect(() => {
+		if (temp.success) {
+			history.push("/trip");
+		}
+	}, [temp]);
 
 	function handleFinalSubmit() {
 		const start = timeConverter(startTime);
@@ -127,45 +135,67 @@ const DataDisplay = ({ data, addCity, removeCity, SelectedCity }) => {
 
 	return (
 		<>
-			<AddInfo
-				tripDate={tripDate}
-				setTripDate={setTripDate}
-				startTime={startTime}
-				setStartTime={setStartTime}
-				endTime={endTime}
-				setEndTime={setEndTime}
-				startLocId={startLocId}
-				setStartLocId={setStartLocId}
-			/>
+			{(() => {
+				if (temp.isLoading) {
+					return <LoadingComp />;
+				} else
+					return (
+						<>
+							<AddInfo
+								tripDate={tripDate}
+								setTripDate={setTripDate}
+								startTime={startTime}
+								setStartTime={setStartTime}
+								endTime={endTime}
+								setEndTime={setEndTime}
+								startLocId={startLocId}
+								setStartLocId={setStartLocId}
+							/>
 
-			<Divider style={{ marginTop: "20px", marginBottom: "20px" }} />
-			<Typography variant="h3">
-				Choose Locations of Your Interest
-			</Typography>
-			<Typography variant="body1" color="textSecondary">
-				Select All the places you are interested in. Our Algorithm will
-				try to fit most of them into your schedule so that you can have
-				the best possible Trip.
-			</Typography>
-			<Divider style={{ marginTop: "20px", marginBottom: "20px" }} />
-			<Grid container spacing={4} direction="row">
-				{data.map((city) => (
-					<OnePlace
-						city={city}
-						addCity={addCity}
-						removeCity={removeCity}
-					/>
-				))}
-			</Grid>
-			<Button
-				fullWidth
-				variant="contained"
-				color="primary"
-				style={{ marginTop: "20px" }}
-				onClick={handleFinalSubmit}
-			>
-				<Typography variant="h4">Generate Trip Plan !</Typography>
-			</Button>
+							<Divider
+								style={{
+									marginTop: "20px",
+									marginBottom: "20px",
+								}}
+							/>
+							<Typography variant="h3">
+								Choose Locations of Your Interest
+							</Typography>
+							<Typography variant="body1" color="textSecondary">
+								Select All the places you are interested in. Our
+								Algorithm will try to fit most of them into your
+								schedule so that you can have the best possible
+								Trip.
+							</Typography>
+							<Divider
+								style={{
+									marginTop: "20px",
+									marginBottom: "20px",
+								}}
+							/>
+							<Grid container spacing={4} direction="row">
+								{data.map((city) => (
+									<OnePlace
+										city={city}
+										addCity={addCity}
+										removeCity={removeCity}
+									/>
+								))}
+							</Grid>
+							<Button
+								fullWidth
+								variant="contained"
+								color="primary"
+								style={{ marginTop: "20px" }}
+								onClick={handleFinalSubmit}
+							>
+								<Typography variant="h4">
+									Generate Trip Plan !
+								</Typography>
+							</Button>
+						</>
+					);
+			})()}
 		</>
 	);
 };

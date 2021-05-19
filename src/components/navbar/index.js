@@ -23,9 +23,11 @@ export default function NavBar() {
 	function handleHomeButton() {
 		history.push("/");
 	}
+	function handleTripButton() {
+		history.push("/myTrips");
+	}
 	function handleLogoutButton() {
 		dispatch(logoutUser());
-		// alert("haha");
 	}
 	useEffect(() => {
 		if (auth.isAuthenticated) {
@@ -47,9 +49,18 @@ export default function NavBar() {
 								bon voyage
 							</Typography>
 						</Button>
+						<Box style={{ marginLeft: "auto" }}>
+							<Button
+								color="inherit"
+								variant="outlined"
+								onClick={handleTripButton}
+							>
+								Your Trips
+							</Button>
+						</Box>
 						<Box
 							display={loginVisible}
-							style={{ marginLeft: "auto" }}
+							style={{ marginLeft: "10px" }}
 						>
 							<Button
 								color="inherit"
@@ -59,9 +70,10 @@ export default function NavBar() {
 								LOGIN
 							</Button>
 						</Box>
+
 						<Box
 							display={logoutVisible}
-							style={{ marginLeft: "auto" }}
+							style={{ marginLeft: "10px" }}
 						>
 							<Button
 								color="inherit"

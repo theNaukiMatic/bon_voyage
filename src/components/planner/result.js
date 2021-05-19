@@ -2,6 +2,7 @@ import { Divider, Grid, Paper, Typography } from "@material-ui/core";
 import React from "react";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import { useSelector } from "react-redux";
+import LoadingComp from "../loadingComp";
 
 function OneTrip({ name, address, timeTaken }) {
 	return (
@@ -52,7 +53,7 @@ export default function TripResultComp() {
 	return (
 		<>
 			{(() => {
-				if (!data.isLoading) {
+				if (!data.isLoading && data.success) {
 					return (
 						<>
 							<Typography variant="h2">All done !</Typography>
@@ -118,6 +119,12 @@ export default function TripResultComp() {
 									</Paper>
 								</Grid>
 							</Grid>
+						</>
+					);
+				} else {
+					return (
+						<>
+							<LoadingComp />
 						</>
 					);
 				}

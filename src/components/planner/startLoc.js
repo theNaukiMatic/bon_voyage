@@ -92,9 +92,6 @@ export default function StartLocComp({ setStartLocId }) {
 		setSelectedCity(city);
 		setStartLocId(city);
 	};
-	// useEffect(() => {
-	// 	console.log(SelectedCity);
-	// }, [SelectedCity]);
 
 	return (
 		<>

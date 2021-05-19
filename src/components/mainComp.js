@@ -9,6 +9,8 @@ import Footer from "./navbar/footer";
 import HomeComp from "./homeComp";
 import InterestComp from "./planner/interest";
 import TripResultComp from "./planner/result";
+import AllTripsComp from "./trip/allTrips";
+import OneTripComp from "./trip/oneTrip";
 
 export default function MainComp() {
 	return (
@@ -30,6 +32,12 @@ export default function MainComp() {
 							</Route>
 							<Route path="/chooseInterest">
 								<InterestComp />
+							</Route>
+							<Route path="/myTrips">
+								<AllTripsComp />
+							</Route>
+							<Route path="/tripDetail">
+								<OneTripComp />
 							</Route>
 							<Route path="/trip">
 								<TripResultComp />
