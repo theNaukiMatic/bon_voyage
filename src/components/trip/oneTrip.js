@@ -1,5 +1,7 @@
-import { Divider, Paper, Typography } from "@material-ui/core";
+import { Divider, Grid, Paper, Typography } from "@material-ui/core";
 import React from "react";
+import FinanceComp from "./finance";
+import TripChatComp from "./tripChat";
 import TripPathsComp from "./tripPaths";
 
 export default function OneTripComp() {
@@ -53,14 +55,15 @@ export default function OneTripComp() {
 			<Typography variant="h2" gutterBottom>
 				{tripData.tripName}
 			</Typography>
-			{/* <Typography variant="body1">
-				Trip Score : {tripData.score}
-			</Typography>
-			<Typography variant="body1" gutterBottom>
-				Trip Time Taken : {tripData.timeTaken}
-			</Typography> */}
-
-			<TripPathsComp paths={tripData.path} />
+			<Grid container spacing={2}>
+				<Grid item xs={4}>
+					<TripPathsComp paths={tripData.path} />
+				</Grid>
+				<Grid item xs={8}>
+					<TripChatComp />
+					<FinanceComp />
+				</Grid>
+			</Grid>
 		</>
 	);
 }

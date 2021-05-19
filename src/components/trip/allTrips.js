@@ -1,6 +1,7 @@
-import { Paper, Typography } from "@material-ui/core";
+import { Box, Divider, Paper, Typography } from "@material-ui/core";
 import React from "react";
 import { useHistory } from "react-router";
+import InterestComp from "../planner/interest";
 
 function TripCard({ tripName }) {
 	const history = useHistory();
@@ -16,6 +17,7 @@ function TripCard({ tripName }) {
 					width: 300,
 					margin: 10,
 					backgroundColor: "lightgrey",
+					cursor: "pointer",
 				}}
 			>
 				<Typography variant="h5" style={{ fontWeight: 600 }}>
@@ -37,9 +39,14 @@ export default function AllTripsComp() {
 	return (
 		<>
 			<Typography variant="h2">Your Trips</Typography>
-			{trips.map((trip) => (
-				<TripCard tripName={trip.tripName} />
-			))}
+			<Box display="flex">
+				{" "}
+				{trips.map((trip) => (
+					<TripCard tripName={trip.tripName} />
+				))}
+			</Box>
+			<Divider style={{ marginBottom: 20 }} />
+			<InterestComp />
 		</>
 	);
 }

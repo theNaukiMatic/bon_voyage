@@ -1,10 +1,17 @@
-import { Box, Paper, Typography } from "@material-ui/core";
+import { Box, Button, Paper, TextField, Typography } from "@material-ui/core";
 import React from "react";
 
 export default function TripPathsComp({ paths }) {
 	return (
 		<>
-			<Paper style={{ padding: 60 }} elevation={10}>
+			<Paper style={{ padding: 20 }} elevation={10}>
+				<Typography
+					variant="h5"
+					style={{ fontWeight: 600, marginBottom: 20 }}
+					gutterBottom
+				>
+					Trip Plan
+				</Typography>
 				{paths.map((path) => (
 					<>
 						<Paper
@@ -63,9 +70,6 @@ export default function TripPathsComp({ paths }) {
 				>
 					<Typography style={{ fontWeight: 600 }}>End</Typography>
 				</Paper>
-			</Paper>
-			<Paper style={{ padding: 20, marginTop: 20 }}>
-				<Typography variant="h4">Trip Chat</Typography>
 			</Paper>
 		</>
 	);
