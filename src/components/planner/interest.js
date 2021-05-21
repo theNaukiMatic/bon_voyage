@@ -96,7 +96,6 @@ const DataDisplay = ({ data, addCity, removeCity, SelectedCity }) => {
 	function dateConverter(date) {
 		var dateParts = date.split("-");
 		var newDate = dateParts[2] + "/" + dateParts[1] + "/" + dateParts[0];
-		// console.log(newDate);
 		return newDate;
 	}
 	function timeConverter(time) {
@@ -113,7 +112,7 @@ const DataDisplay = ({ data, addCity, removeCity, SelectedCity }) => {
 		if (temp.success) {
 			history.push("/trip");
 		}
-	}, [temp]);
+	}, [temp, history]);
 
 	function handleFinalSubmit() {
 		const start = timeConverter(startTime);

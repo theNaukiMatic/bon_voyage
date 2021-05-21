@@ -148,7 +148,22 @@ export default function TripChatComp() {
 			updatedAt: "2021-05-17T14:29:10.099Z",
 			__v: 0,
 		},
+		{
+			_id: "60a27c36e91e7c5ee4c463c1",
+			message: "ok",
+			authorId: "602260c56ccd705380f5676d",
+			authorName: "Nikhil Kumar",
+			createdAt: "2021-05-17T14:22:46.659Z",
+			updatedAt: "2021-05-17T14:22:46.659Z",
+			__v: 0,
+		},
 	];
+	// const scrollToMyRef = () => {
+	// 	const scroll =
+	// 		this.chatContainer.current.scrollHeight -
+	// 		this.chatContainer.current.clientHeight;
+	// 	this.chatContainer.current.scrollTo(0, scroll);
+	// };
 	return (
 		<Paper style={{ padding: 40 }} elevation={10}>
 			<Typography
@@ -158,7 +173,13 @@ export default function TripChatComp() {
 			>
 				Trip Chat
 			</Typography>
-			<Box style={{ height: "600px", overflowY: "scroll" }}>
+			<Box
+				style={{
+					height: "600px",
+					overflowY: "scroll",
+					backgroundColor: "lightgrey",
+				}}
+			>
 				{chats.map((msg) => (
 					<>
 						{(() => {

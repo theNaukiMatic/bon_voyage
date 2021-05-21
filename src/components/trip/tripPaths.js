@@ -1,4 +1,4 @@
-import { Box, Button, Paper, TextField, Typography } from "@material-ui/core";
+import { Box, Paper, Typography } from "@material-ui/core";
 import React from "react";
 
 export default function TripPathsComp({ paths }) {

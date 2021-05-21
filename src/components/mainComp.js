@@ -23,8 +23,6 @@ export default function MainComp() {
 					<Container>
 						<Switch>
 							<Route exact path="/">
-								{/* <SimpleMap /> */}
-
 								<HomeComp />
 							</Route>
 							<Route path="/login">
@@ -36,7 +34,7 @@ export default function MainComp() {
 							<Route path="/myTrips">
 								<AllTripsComp />
 							</Route>
-							<Route path="/tripDetail">
+							<Route path="/tripDetail/:tripId">
 								<OneTripComp />
 							</Route>
 							<Route path="/trip">
