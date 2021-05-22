@@ -9,7 +9,7 @@ function OneTrip({ name, address }) {
 		<>
 			<Grid item sm={3}>
 				{(() => {
-					if (name == "null") {
+					if (name === "null") {
 						return (
 							<>
 								<Paper

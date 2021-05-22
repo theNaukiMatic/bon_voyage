@@ -24,9 +24,9 @@ export default function OneTripComp() {
 		dispatch(fetchTripFinance(params.tripId));
 		dispatch(fetchCalcFin(params.tripId));
 	}, [dispatch, params.tripId]);
-	function refreshChat() {
-		dispatch(fetchTripChat(params.tripId));
-	}
+	// function refreshChat() {
+	// 	dispatch(fetchTripChat(params.tripId));
+	// }
 	if (tripData.isLoading || !tripData.success) {
 		return <LoadingComp />;
 	} else {

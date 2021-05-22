@@ -24,6 +24,7 @@ const getCalcFin = createSlice({
 			...state,
 			isLoading: false,
 			errMess: action.message,
+			success: false,
 		}),
 	},
 });

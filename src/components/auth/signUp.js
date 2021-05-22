@@ -4,7 +4,7 @@ import { TextField, Grid, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import { postSignUp } from "../../store/features/auth/signUpSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
 	root: { flexGrow: 1 },

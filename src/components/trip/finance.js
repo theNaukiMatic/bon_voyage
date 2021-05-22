@@ -6,8 +6,7 @@ import {
 	TextField,
 	Typography,
 } from "@material-ui/core";
-import { ChatSharp } from "@material-ui/icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingComp from "../loadingComp";
 
@@ -100,8 +99,10 @@ export default function TripFinance({ tripId }) {
 				msg: msg,
 			})
 		);
-		dispatch(fetchCalcFin(tripId));
 	}
+	useEffect(() => {
+		dispatch(fetchCalcFin(tripId));
+	}, [chats, tripId, dispatch]);
 	if (chats.isLoading || !chats.success) {
 		return (
 			<Box height={700}>
@@ -116,7 +117,7 @@ export default function TripFinance({ tripId }) {
 					style={{ fontWeight: 600, marginBottom: 20 }}
 					gutterBottom
 				>
-					Trip Finance
+					Trip Finance History
 				</Typography>
 				<Box
 					style={{
@@ -137,7 +138,7 @@ export default function TripFinance({ tripId }) {
 						</>
 					))}
 				</Box>
-				<Paper elevation={10} style={{ marginLeft: 10, padding: 10 }}>
+				<Paper elevation={10} style={{ padding: 10 }}>
 					<Box display="flex">
 						<TextField
 							fullWidth
@@ -150,13 +151,13 @@ export default function TripFinance({ tripId }) {
 							variant="contained"
 							color="secondary"
 							style={{
-								width: 100,
+								width: 200,
 								marginLeft: 10,
 								fontWeight: 600,
 							}}
 							onClick={handlePostFin}
 						>
-							Send
+							Add Expense
 						</Button>
 					</Box>
 				</Paper>

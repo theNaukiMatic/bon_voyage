@@ -25,6 +25,7 @@ const postFin = createSlice({
 			...state,
 			isLoading: false,
 			errMess: action.message,
+			success: false,
 		}),
 	},
 });

@@ -69,9 +69,11 @@ const OnePlace = ({ city, selectCity, SelectedCity }) => {
 const SearchDisplay = ({ data, selectCity, SelectedCity }) => {
 	return (
 		<>
-			<Typography variant="h5">Search Results</Typography>
+			<Typography variant="h5" style={{ marginTop: 20 }}>
+				Search Results
+			</Typography>
 			<Divider style={{ marginBottom: "20px" }} />
-			<Grid container spacing={4} direction="row">
+			<Grid container direction="row">
 				{data.map((city) => (
 					<OnePlace
 						city={city}

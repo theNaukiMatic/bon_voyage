@@ -20,6 +20,7 @@ export default function TripMembersComp({ members }) {
 							display: "flex",
 							alignItems: "center",
 							marginBottom: 20,
+							borderRadius: 20,
 						}}
 					>
 						<Avatar src="" alt={member.username} />

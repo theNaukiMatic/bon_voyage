@@ -7,8 +7,9 @@ import {
 	CardActionArea,
 	Divider,
 	TextField,
+	Paper,
 } from "@material-ui/core";
-import { gMapsKey } from "../../baseUrl";
+// import { gMapsKey } from "../../baseUrl";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingComp from "../loadingComp";
@@ -109,7 +110,7 @@ const DataDisplay = ({ data, addCity, removeCity, SelectedCity }) => {
 		var newTime = time + ":00";
 		return newTime;
 	}
-	const [tripDate, setTripDate] = useState("2021-04-16");
+	const [tripDate, setTripDate] = useState("2021-06-16");
 	const [startTime, setStartTime] = useState("09:00");
 	const [endTime, setEndTime] = useState("18:00");
 	const [startLocId, setStartLocId] = useState("");
@@ -158,12 +159,26 @@ const DataDisplay = ({ data, addCity, removeCity, SelectedCity }) => {
 								startLocId={startLocId}
 								setStartLocId={setStartLocId}
 							/>
-							<TextField
-								variant="outlined"
-								value={tripName}
-								onChange={(e) => setTripName(e.target.value)}
-								helperText="set a good name for your Trip"
-							/>
+							<Paper
+								elevation={10}
+								style={{
+									padding: 20,
+									marginTop: 20,
+									borderRadius: 20,
+								}}
+							>
+								<Typography>Enter Trip Name</Typography>
+
+								<TextField
+									variant="outlined"
+									value={tripName}
+									onChange={(e) =>
+										setTripName(e.target.value)
+									}
+									fullWidth
+									helperText="set a good name for your Trip"
+								/>
+							</Paper>
 
 							<Divider
 								style={{

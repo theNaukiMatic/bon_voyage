@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { baseUrl } from "../../../baseUrl";
-import { fetchTripChat } from "./tripChat";
 const searchTrip = createSlice({
 	name: "searchTrip",
 	initialState: {
@@ -25,6 +24,7 @@ const searchTrip = createSlice({
 			...state,
 			isLoading: false,
 			errMess: action.message,
+			success: false,
 		}),
 	},
 });

@@ -25,6 +25,7 @@ const postMessage = createSlice({
 			...state,
 			isLoading: false,
 			errMess: action.message,
+			success: false,
 		}),
 	},
 });

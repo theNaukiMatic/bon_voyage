@@ -1,8 +1,7 @@
-import { Box, Divider, Grid, Paper, Typography } from "@material-ui/core";
+import { Divider, Grid, Paper, Typography } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import InterestComp from "../planner/interest";
 import { fetchMyTrips } from "../../store/features/trip/myTrips";
 import LoadingComp from "../loadingComp";
 
@@ -37,7 +36,7 @@ export default function AllTripsComp() {
 	const dispatch = useDispatch();
 	useEffect(() => {
 		dispatch(fetchMyTrips());
-	}, []);
+	}, [dispatch]);
 	const trips = useSelector((state) => state.trips.myTrips);
 	if (trips.isLoading || !trips.success) {
 		return <LoadingComp />;

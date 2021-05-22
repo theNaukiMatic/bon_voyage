@@ -4,6 +4,7 @@ import {
 	FormControl,
 	Grid,
 	makeStyles,
+	Paper,
 	TextField,
 	Typography,
 } from "@material-ui/core";
@@ -40,12 +41,12 @@ export default function AddInfo({
 	};
 	return (
 		<>
-			<Divider style={{ marginTop: "20px", marginBottom: "20px" }} />
-			<Typography variant="h3">
-				Provide More Data for your Trip
-			</Typography>
-			<Divider style={{ marginTop: "20px", marginBottom: "20px" }} />
-			<FormControl>
+			<Paper elevation={10} style={{ padding: 40, borderRadius: 20 }}>
+				<Typography variant="h3">
+					Provide More Data for your Trip
+				</Typography>
+				<Divider style={{ marginTop: "20px", marginBottom: "20px" }} />
+				{/* <FormControl> */}
 				<Grid container direction="column" spacing={4}>
 					<Grid
 						item
@@ -90,18 +91,16 @@ export default function AddInfo({
 								}}
 							/>
 						</Grid>
-						<Grid item>
-							<FormControl className={classes.formControl}>
-								<TextField
-									variant="outlined"
-									label="Search Your Starting Location"
-									fullWidth
-									value={startLoc}
-									onChange={(e) =>
-										setStartLoc(e.target.value)
-									}
-								/>
-							</FormControl>
+						<Grid item xs={4}>
+							{/* <FormControl className={classes.formControl}> */}
+							<TextField
+								variant="outlined"
+								label="Search Your Starting Location"
+								fullWidth
+								value={startLoc}
+								onChange={(e) => setStartLoc(e.target.value)}
+							/>
+							{/* </FormControl> */}
 						</Grid>
 						<Grid item>
 							<Button
@@ -116,11 +115,9 @@ export default function AddInfo({
 							</Button>
 						</Grid>
 					</Grid>
-					<Grid item>
-						<StartLocComp setStartLocId={setStartLocId} />
-					</Grid>
 				</Grid>
-			</FormControl>
+				<StartLocComp setStartLocId={setStartLocId} />
+			</Paper>
 		</>
 	);
 }

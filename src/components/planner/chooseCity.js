@@ -31,7 +31,7 @@ export default function ChooseCity() {
 			<Paper
 				className={classes.paper}
 				elevation={10}
-				style={{ padding: "50px" }}
+				style={{ padding: "50px", borderRadius: 20 }}
 			>
 				<Typography variant="h2">Start Planning Your Trip</Typography>
 				<Typography variant="body1" color="textSecondary">

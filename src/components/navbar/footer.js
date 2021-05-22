@@ -5,7 +5,7 @@ export default function Footer() {
 		<div
 			style={{
 				height: "400px",
-				backgroundColor: "lightgray",
+				// backgroundColor: "lightgray",
 				marginTop: "40px",
 			}}
 		></div>

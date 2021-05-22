@@ -13,8 +13,8 @@ export default function SearchTripComp() {
 		history.push("/searchResult");
 	}
 	return (
-		<Paper elevation={10} style={{ padding: "50px" }}>
-			<Typography variant="h2">Start Planning Your Trip</Typography>
+		<Paper elevation={10} style={{ padding: "50px", borderRadius: 20 }}>
+			<Typography variant="h2">Search an existing Trip</Typography>
 			<Typography variant="body1" color="textSecondary">
 				{" "}
 				Make sure you enter correct spelling.

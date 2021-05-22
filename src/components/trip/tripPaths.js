@@ -44,6 +44,19 @@ export default function TripPathsComp({ paths }) {
 											<Typography>
 												{path.placeAddress}
 											</Typography>
+											<Typography
+												style={{
+													fontWeight: 600,
+													color: "red",
+												}}
+											>
+												Time elapsed ={" "}
+												{
+													path.timeAfterVisit
+														.$numberDecimal
+												}{" "}
+												hrs
+											</Typography>
 										</>
 									);
 								}

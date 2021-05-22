@@ -1,4 +1,4 @@
-import { Avatar, Paper, Typography } from "@material-ui/core";
+import { Paper, Typography } from "@material-ui/core";
 import React from "react";
 import { useSelector } from "react-redux";
 import LoadingComp from "../loadingComp";
@@ -15,7 +15,7 @@ export default function YourFinancesComp(tripId) {
 					style={{ fontWeight: 600, marginBottom: 20 }}
 					gutterBottom
 				>
-					Your Finances
+					Calculated Finances
 				</Typography>
 				{finance.data.splitWise.map((member) => {
 					return (
@@ -25,6 +25,7 @@ export default function YourFinancesComp(tripId) {
 								style={{
 									padding: 20,
 									marginBottom: 20,
+									borderRadius: 20,
 								}}
 							>
 								<Typography
@@ -40,7 +41,7 @@ export default function YourFinancesComp(tripId) {
 										variant="h4"
 										style={{ color: "red" }}
 									>
-										You owe ₹ {member.toPay}
+										owes ₹ {member.toPay}
 									</Typography>
 								)}
 								{member.toPay < 0 && (
@@ -48,7 +49,7 @@ export default function YourFinancesComp(tripId) {
 										variant="h4"
 										style={{ color: "green" }}
 									>
-										You get ₹ {-member.toPay}
+										will get ₹ {-member.toPay}
 									</Typography>
 								)}
 							</Paper>
