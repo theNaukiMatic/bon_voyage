@@ -3,7 +3,7 @@ import React from "react";
 
 export default function TripMembersComp({ members }) {
 	return (
-		<Paper elevation={10} style={{ padding: 20 }}>
+		<Paper elevation={10} style={{ padding: 20, marginTop: 20 }}>
 			<Typography
 				variant="h5"
 				style={{ fontWeight: 600, marginBottom: 20 }}
@@ -19,6 +19,7 @@ export default function TripMembersComp({ members }) {
 							padding: 20,
 							display: "flex",
 							alignItems: "center",
+							marginBottom: 20,
 						}}
 					>
 						<Avatar src="" alt={member.username} />

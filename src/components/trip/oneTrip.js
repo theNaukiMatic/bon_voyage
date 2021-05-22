@@ -11,6 +11,9 @@ import { fetchTripDetails } from "../../store/features/trip/tripDetail";
 import { fetchTripChat } from "../../store/features/trip/tripChat";
 import { fetchTripFinance } from "../../store/features/trip/tripFinance";
 
+import { fetchCalcFin } from "../../store/features/trip/calcTripFin";
+import YourFinancesComp from "./yourFinances";
+
 export default function OneTripComp() {
 	const params = useParams();
 	const dispatch = useDispatch();
@@ -19,7 +22,8 @@ export default function OneTripComp() {
 		dispatch(fetchTripDetails(params.tripId));
 		dispatch(fetchTripChat(params.tripId));
 		dispatch(fetchTripFinance(params.tripId));
-	}, [dispatch]);
+		dispatch(fetchCalcFin(params.tripId));
+	}, [dispatch, params.tripId]);
 	function refreshChat() {
 		dispatch(fetchTripChat(params.tripId));
 	}
@@ -37,10 +41,11 @@ export default function OneTripComp() {
 						<TripMembersComp
 							members={tripData.data.tripInfo.users}
 						/>
+						<YourFinancesComp tripId={params.tripId} />
 					</Grid>
 					<Grid item xs={8}>
 						<TripChatComp tripId={params.tripId} />
-						{/* <FinanceComp /> */}
+						<FinanceComp tripId={params.tripId} />
 					</Grid>
 				</Grid>
 			</>

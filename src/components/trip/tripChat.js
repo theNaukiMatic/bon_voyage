@@ -6,7 +6,7 @@ import {
 	TextField,
 	Typography,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingComp from "../loadingComp";
 import { postMessageRequest } from "../../store/features/trip/postMsg";
@@ -88,7 +88,13 @@ function MsgMine({ msg }) {
 export default function TripChatComp({ tripId }) {
 	const myId = localStorage.getItem("userId");
 	const chats = useSelector((state) => state.trips.tripChat);
-
+	function updateScroll() {
+		var element = document.getElementById("charBox");
+		element.scrollTop = element.scrollHeight;
+	}
+	useEffect(() => {
+		if (!(chats.isLoading || !chats.success)) updateScroll();
+	}, [chats]);
 	const dispatch = useDispatch();
 	const [myMessage, setMyMessage] = useState("");
 	function handleMsgSend() {
@@ -105,6 +111,8 @@ export default function TripChatComp({ tripId }) {
 				<LoadingComp />
 			</Box>
 		);
+	} else if (chats.data == "Join this trip to view message") {
+		return <>Join this trip to view messages</>;
 	} else {
 		return (
 			<Paper style={{ padding: 40 }} elevation={10}>
@@ -121,6 +129,7 @@ export default function TripChatComp({ tripId }) {
 						overflowY: "scroll",
 						backgroundColor: "lightgrey",
 					}}
+					id="charBox"
 				>
 					{chats.data.messages.map((msg) => (
 						<>

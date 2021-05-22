@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+
+import { gMapsKey } from "../../../baseUrl";
 const startLocSlice = createSlice({
 	name: "startLoc",
 	initialState: {
@@ -27,11 +29,8 @@ const startLocSlice = createSlice({
 		}),
 	},
 });
-export const {
-	startLocFailed,
-	startLocRequest,
-	startLocSuccess,
-} = startLocSlice.actions;
+export const { startLocFailed, startLocRequest, startLocSuccess } =
+	startLocSlice.actions;
 
 export const requestStartLoc = () => {
 	return {
@@ -55,7 +54,7 @@ export const startLocError = (message) => {
 export const getStartLoc = (query) => (dispatch) => {
 	dispatch(requestStartLoc());
 	const call = {
-		url: `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${query}&inputtype=textquery&fields=place_id,name,formatted_address,type&key=AIzaSyCH-n1ukoItZpb2gin5Ik8Vn2Hczdz0I5E`,
+		url: `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${query}&inputtype=textquery&fields=place_id,name,formatted_address,type&key=${gMapsKey}`,
 		method: "GET",
 		Headers: {
 			"Content-Type": "application/json",

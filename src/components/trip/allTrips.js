@@ -1,4 +1,4 @@
-import { Box, Divider, Paper, Typography } from "@material-ui/core";
+import { Box, Divider, Grid, Paper, Typography } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
@@ -45,14 +45,15 @@ export default function AllTripsComp() {
 		return (
 			<>
 				<Typography variant="h2">Your Trips</Typography>
-				<Box display="flex">
-					{" "}
+				<Grid container>
 					{trips.data.map((trip) => (
-						<TripCard trip={trip} />
+						<Grid item xs={4}>
+							<TripCard trip={trip} />{" "}
+						</Grid>
 					))}
-				</Box>
+				</Grid>{" "}
 				<Divider style={{ marginBottom: 20 }} />
-				<InterestComp />
+				{/* <InterestComp /> */}
 			</>
 		);
 	}

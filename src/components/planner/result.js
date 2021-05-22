@@ -4,15 +4,21 @@ import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import { useSelector } from "react-redux";
 import LoadingComp from "../loadingComp";
 
-function OneTrip({ name, address, timeTaken }) {
+function OneTrip({ name, address }) {
 	return (
 		<>
 			<Grid item sm={3}>
 				{(() => {
-					if (name === "wait") {
+					if (name == "null") {
 						return (
 							<>
-								<Paper style={{ padding: "20px" }}>
+								<Paper
+									style={{
+										padding: "20px",
+										backgroundColor: "lightblue",
+									}}
+									elevation={10}
+								>
 									<Typography variant="h4">
 										{" "}
 										Wait for 1 hr
@@ -23,7 +29,10 @@ function OneTrip({ name, address, timeTaken }) {
 					} else {
 						return (
 							<>
-								<Paper style={{ padding: "20px" }}>
+								<Paper
+									style={{ padding: "20px" }}
+									elevation={10}
+								>
 									<Typography>{name}</Typography>
 									<Typography color="textSecondary">
 										{address}
@@ -33,14 +42,6 @@ function OneTrip({ name, address, timeTaken }) {
 						);
 					}
 				})()}
-				<Paper
-					style={{
-						padding: "10px",
-						backgroundColor: "lightgrey",
-					}}
-				>
-					<Typography> Time Spent = {timeTaken} hrs</Typography>
-				</Paper>
 			</Grid>
 			<Grid item>
 				<ArrowRightAltIcon style={{ marginTop: "50px" }} />
@@ -57,11 +58,7 @@ export default function TripResultComp() {
 					return (
 						<>
 							<Typography variant="h2">All done !</Typography>
-							<Typography variant="h5" color="textSecondary">
-								These were the top 5 best possible trips for you
-								based on the given time limit and your choices
-								of places.
-							</Typography>
+
 							<Divider
 								style={{
 									marginTop: "20px",
@@ -88,23 +85,16 @@ export default function TripResultComp() {
 									/>
 								</Grid>
 
-								<OneTrip
-									name="Hawa Mahal"
-									address="Jaipur"
-									timeTaken="4"
-								/>
-								<OneTrip name="wait" address="" timeTaken="" />
-								<OneTrip
-									name="Red Fort"
-									address="Pink City"
-									timeTaken="3"
-								/>
-								<OneTrip
-									name="Akshar dham"
-									address="Jaipur"
-									timeTaken="2"
-								/>
-								<OneTrip name="wait" address="" timeTaken="" />
+								{data.cityData.result[0].path.map((onePath) => {
+									return (
+										<>
+											<OneTrip
+												name={onePath.placeName}
+												address={onePath.placeAddress}
+											/>
+										</>
+									);
+								})}
 								<Grid item>
 									{" "}
 									<Paper

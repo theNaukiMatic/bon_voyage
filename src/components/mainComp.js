@@ -11,6 +11,8 @@ import InterestComp from "./planner/interest";
 import TripResultComp from "./planner/result";
 import AllTripsComp from "./trip/allTrips";
 import OneTripComp from "./trip/oneTrip";
+import SearchTripComp from "./searchTrips";
+import SearchResultComp from "./searchTrips/searchResult";
 
 export default function MainComp() {
 	return (
@@ -42,6 +44,12 @@ export default function MainComp() {
 							</Route>
 							<Route path="/signup">
 								<SignUpComp />
+							</Route>
+							<Route path="/searchTrip">
+								<SearchTripComp />
+							</Route>
+							<Route path="/searchResult">
+								<SearchResultComp />
 							</Route>
 						</Switch>
 					</Container>

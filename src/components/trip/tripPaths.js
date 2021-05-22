@@ -12,7 +12,7 @@ export default function TripPathsComp({ paths }) {
 				>
 					Trip Plan
 				</Typography>
-				{paths.map((path) => (
+				{paths[0].path.map((path) => (
 					<>
 						<Paper
 							elevation={10}

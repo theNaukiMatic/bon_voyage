@@ -6,7 +6,9 @@ import {
 	Button,
 	CardActionArea,
 	Divider,
+	TextField,
 } from "@material-ui/core";
+import { gMapsKey } from "../../baseUrl";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingComp from "../loadingComp";
@@ -45,11 +47,16 @@ const OnePlace = ({ city, addCity, removeCity }) => {
 					// minHeight: "500px",
 				}}
 			>
-				{/* <img
-					// style={{ maxHeight: "400px", width: "100%" }}
-					src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${city.photos[0].photo_reference}&key=AIzaSyCH-n1ukoItZpb2gin5Ik8Vn2Hczdz0I5E`}
-					alt={city.name}
-				/> */}
+				{/* {Object.keys(city.photos).length && city.photos.length ? (
+					<img
+						// style={{ maxHeight: "400px", width: "100%" }}
+						src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${city.photos[0].photo_reference}&key=${gMapsKey}`}
+						alt={city.name}
+					/>
+				) : (
+					<LoadingComp />
+				)} */}
+
 				<CardActionArea
 					onClick={() =>
 						window.open(
@@ -106,6 +113,7 @@ const DataDisplay = ({ data, addCity, removeCity, SelectedCity }) => {
 	const [startTime, setStartTime] = useState("09:00");
 	const [endTime, setEndTime] = useState("18:00");
 	const [startLocId, setStartLocId] = useState("");
+	const [tripName, setTripName] = useState("");
 
 	const temp = useSelector((state) => state.cityInfo.sendTrip);
 	useEffect(() => {
@@ -121,7 +129,7 @@ const DataDisplay = ({ data, addCity, removeCity, SelectedCity }) => {
 		var tempList = [startLocId];
 		var finalList = tempList.concat(SelectedCity);
 		const dataPacket = {
-			cityName: "Jaipur",
+			cityName: tripName,
 			start: start,
 			end: end,
 			date: date,
@@ -149,6 +157,12 @@ const DataDisplay = ({ data, addCity, removeCity, SelectedCity }) => {
 								setEndTime={setEndTime}
 								startLocId={startLocId}
 								setStartLocId={setStartLocId}
+							/>
+							<TextField
+								variant="outlined"
+								value={tripName}
+								onChange={(e) => setTripName(e.target.value)}
+								helperText="set a good name for your Trip"
 							/>
 
 							<Divider

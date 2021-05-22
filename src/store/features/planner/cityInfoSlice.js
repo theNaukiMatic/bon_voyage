@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { gMapsKey } from "../../../baseUrl";
 const cityInfoSlice = createSlice({
 	name: "cityInfo",
 	initialState: {
@@ -26,11 +27,8 @@ const cityInfoSlice = createSlice({
 		}),
 	},
 });
-export const {
-	cityInfoFailed,
-	cityInfoRequest,
-	cityInfoSuccess,
-} = cityInfoSlice.actions;
+export const { cityInfoFailed, cityInfoRequest, cityInfoSuccess } =
+	cityInfoSlice.actions;
 
 export const requestCityInfo = () => {
 	return {
@@ -54,7 +52,7 @@ export const cityInfoError = (message) => {
 export const getCityData = (cityName) => (dispatch) => {
 	dispatch(requestCityInfo());
 	const call = {
-		url: `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${cityName}&type=tourist_attraction&rankby=prominence&key=AIzaSyCH-n1ukoItZpb2gin5Ik8Vn2Hczdz0I5E`,
+		url: `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${cityName}&type=tourist_attraction&rankby=prominence&key=${gMapsKey}`,
 		method: "GET",
 		Headers: {
 			"Content-Type": "application/json",

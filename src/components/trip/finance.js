@@ -7,9 +7,12 @@ import {
 	Typography,
 } from "@material-ui/core";
 import { ChatSharp } from "@material-ui/icons";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import LoadingComp from "../loadingComp";
+
+import { postFinanceRequest } from "../../store/features/trip/postFin";
+import { fetchCalcFin } from "../../store/features/trip/calcTripFin";
 function MsgOther({ msg }) {
 	return (
 		<>
@@ -31,7 +34,7 @@ function MsgOther({ msg }) {
 						color="textSecondary"
 						style={{ marginLeft: "auto" }}
 					>
-						{/* {new Intl.DateTimeFormat("default", {
+						{new Intl.DateTimeFormat("default", {
 							year: "numeric",
 							month: "numeric",
 							day: "numeric",
@@ -39,13 +42,13 @@ function MsgOther({ msg }) {
 							minute: "numeric",
 							second: "numeric",
 							hour12: true,
-						}).format(new Date(Date.parse(msg.updatedAt)))} */}
+						}).format(new Date(Date.parse(msg.updatedAt)))}
 					</Typography>
 				</Box>
 
 				<Typography variant="h5" color="textSecondary">
 					{" "}
-					{msg.message}
+					{"₹ " + msg.expended}
 				</Typography>
 			</Paper>
 		</>
@@ -67,7 +70,7 @@ function MsgMine({ msg }) {
 					{msg.author.username}
 				</Typography>
 				<Typography variant="body2" color="textSecondary" align="right">
-					{/* {new Intl.DateTimeFormat("default", {
+					{new Intl.DateTimeFormat("default", {
 						year: "numeric",
 						month: "numeric",
 						day: "numeric",
@@ -75,20 +78,30 @@ function MsgMine({ msg }) {
 						minute: "numeric",
 						second: "numeric",
 						hour12: true,
-					}).format(new Date(Date.parse(msg.updatedAt)))} */}
+					}).format(new Date(Date.parse(msg.updatedAt)))}
 				</Typography>
 				<Typography variant="h5" color="textSecondary" align="right">
 					{" "}
-					{msg.message}
+					{"₹ " + msg.expended}
 				</Typography>
 			</Paper>
 		</>
 	);
 }
-export default function TripFinance() {
+export default function TripFinance({ tripId }) {
 	const myId = localStorage.getItem("userId");
 	const chats = useSelector((state) => state.trips.tripFinance);
-
+	const [msg, setMsg] = useState(0);
+	const dispatch = useDispatch();
+	function handlePostFin() {
+		dispatch(
+			postFinanceRequest({
+				tripId: tripId,
+				msg: msg,
+			})
+		);
+		dispatch(fetchCalcFin(tripId));
+	}
 	if (chats.isLoading || !chats.success) {
 		return (
 			<Box height={700}>
@@ -126,7 +139,13 @@ export default function TripFinance() {
 				</Box>
 				<Paper elevation={10} style={{ marginLeft: 10, padding: 10 }}>
 					<Box display="flex">
-						<TextField fullWidth variant="outlined" />
+						<TextField
+							fullWidth
+							variant="outlined"
+							type="number"
+							value={msg}
+							onChange={(e) => setMsg(e.target.value)}
+						/>
 						<Button
 							variant="contained"
 							color="secondary"
@@ -135,6 +154,7 @@ export default function TripFinance() {
 								marginLeft: 10,
 								fontWeight: 600,
 							}}
+							onClick={handlePostFin}
 						>
 							Send
 						</Button>

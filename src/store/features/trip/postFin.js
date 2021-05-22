@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { baseUrl } from "../../../baseUrl";
-const sendTripDataSlice = createSlice({
-	name: "sendTripData",
+import { fetchTripFinance } from "./tripFinance";
+const postFin = createSlice({
+	name: "postFin",
 	initialState: {
 		isLoading: false,
 		data: null,
@@ -17,7 +18,7 @@ const sendTripDataSlice = createSlice({
 			...state,
 			isLoading: false,
 			errMess: null,
-			cityData: action.data,
+			data: action.data,
 			success: true,
 		}),
 		sendFailed: (state, action) => ({
@@ -27,8 +28,7 @@ const sendTripDataSlice = createSlice({
 		}),
 	},
 });
-export const { sendFailed, sendRequest, sendSuccess } =
-	sendTripDataSlice.actions;
+export const { sendFailed, sendRequest, sendSuccess } = postFin.actions;
 
 export const requestSend = () => {
 	return {
@@ -49,33 +49,28 @@ export const sendError = (message) => {
 		message,
 	};
 };
-export const sendTripForm = (dataPacket) => (dispatch) => {
+export const postFinanceRequest = (data) => (dispatch) => {
 	dispatch(requestSend());
-	console.log(dataPacket);
 	const call = {
-		url: baseUrl + "trips/makeTrip",
-		method: "post",
+		url: baseUrl + `splitWise/${data.tripId}`,
+		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 			Authorization: "Bearer " + localStorage.getItem("token"),
-			// "Authorization":
-			// 	"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDc0YTNmZTJjZmU2MjUwMDBjZTQzNjQiLCJpYXQiOjE2MTg1NjMzOTksImV4cCI6MTYyMjE2MzM5OX0.TVG1jylt7WZpaOqinCQASsdU71NtNkVZzxMru11OnTc",
+			// "Access-Control-Allow-Origin": "*",
 		},
 		data: {
-			tripName: dataPacket.cityName,
-			start: dataPacket.start,
-			end: dataPacket.end,
-			date: dataPacket.date,
-			placeId: dataPacket.placeId,
+			expended: data.msg,
 		},
 	};
 	return axios(call)
 		.then((response) => {
 			dispatch(receiveSend(response.data));
+			dispatch(fetchTripFinance(data.tripId));
 		})
 		.catch((error) => {
 			dispatch(sendError(error.message));
 			alert(error);
 		});
 };
-export default sendTripDataSlice.reducer;
+export default postFin.reducer;

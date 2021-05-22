@@ -29,6 +29,9 @@ export default function NavBar() {
 	function handleLogoutButton() {
 		dispatch(logoutUser());
 	}
+	function handleSearchTrip() {
+		history.push("/searchTrip");
+	}
 	useEffect(() => {
 		if (auth.isAuthenticated) {
 			setLoginVisible("none");
@@ -56,6 +59,15 @@ export default function NavBar() {
 								onClick={handleTripButton}
 							>
 								Your Trips
+							</Button>
+						</Box>
+						<Box style={{ marginLeft: "10px" }}>
+							<Button
+								color="inherit"
+								variant="outlined"
+								onClick={handleSearchTrip}
+							>
+								Search Trips
 							</Button>
 						</Box>
 						<Box
