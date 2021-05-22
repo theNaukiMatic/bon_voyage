@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { baseUrl } from "../../../baseUrl";
-const getTripFinance = createSlice({
-	name: "getTripFinance",
+import { loginUser } from "./loginSlice";
+const signUpSlice = createSlice({
+	name: "signUp",
 	initialState: {
 		isLoading: false,
 		data: null,
@@ -24,11 +25,10 @@ const getTripFinance = createSlice({
 			...state,
 			isLoading: false,
 			errMess: action.message,
-			success: false,
 		}),
 	},
 });
-export const { sendFailed, sendRequest, sendSuccess } = getTripFinance.actions;
+export const { sendFailed, sendRequest, sendSuccess } = signUpSlice.actions;
 
 export const requestSend = () => {
 	return {
@@ -49,25 +49,29 @@ export const sendError = (message) => {
 		message,
 	};
 };
-export const fetchTripFinance = (tripId) => (dispatch) => {
+export const postSignUp = (creds) => (dispatch) => {
 	dispatch(requestSend());
 	const call = {
-		url: baseUrl + `splitWise/${tripId}`,
-		method: "GET",
+		url: baseUrl + "users/signup",
+		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
-			Authorization: "Bearer " + localStorage.getItem("token"),
-			"Access-Control-Allow-Origin": "*",
 		},
+		data: creds,
 	};
 	return axios(call)
 		.then((response) => {
 			dispatch(receiveSend(response.data));
+			dispatch(
+				loginUser({
+					username: creds.username,
+					password: creds.password,
+				})
+			);
 		})
 		.catch((error) => {
-			alert(baseUrl + `tripInfo/${tripId}`);
 			dispatch(sendError(error.message));
 			alert(error);
 		});
 };
-export default getTripFinance.reducer;
+export default signUpSlice.reducer;

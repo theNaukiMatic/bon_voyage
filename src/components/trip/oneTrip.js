@@ -6,8 +6,10 @@ import LoadingComp from "../loadingComp";
 import FinanceComp from "./finance";
 import TripChatComp from "./tripChat";
 import TripPathsComp from "./tripPaths";
+import TripMembersComp from "./tripMembers";
 import { fetchTripDetails } from "../../store/features/trip/tripDetail";
 import { fetchTripChat } from "../../store/features/trip/tripChat";
+import { fetchTripFinance } from "../../store/features/trip/tripFinance";
 
 export default function OneTripComp() {
 	const params = useParams();
@@ -16,55 +18,11 @@ export default function OneTripComp() {
 	useEffect(() => {
 		dispatch(fetchTripDetails(params.tripId));
 		dispatch(fetchTripChat(params.tripId));
-	}, []);
+		dispatch(fetchTripFinance(params.tripId));
+	}, [dispatch]);
 	function refreshChat() {
 		dispatch(fetchTripChat(params.tripId));
 	}
-	const tripData2 = {
-		tripName: "Jaipur Trip",
-		path: [
-			{
-				placeId: "ChIJlXJ26RuxbTkR0qsToxFP05c",
-				placeName: "Jal Mahal",
-				placeAddress:
-					"Amer Rd, Jal Mahal, Amer, Jaipur, Rajasthan 302002, India",
-			},
-			{
-				placeId: "ChIJaXD1f0yxbTkRvquNoSkESuk",
-				placeName: "Jantar Mantar - Jaipur",
-				placeAddress:
-					"Gangori Bazaar, J.D.A. Market, Pink City, Jaipur, Rajasthan 302002, India",
-			},
-			{
-				placeId: "wait",
-				placeName: "null",
-				placeAddress: "null",
-			},
-			{
-				placeId: "wait",
-				placeName: "null",
-				placeAddress: "null",
-			},
-			{
-				placeId: "wait",
-				placeName: "null",
-				placeAddress: "null",
-			},
-			{
-				placeId: "wait",
-				placeName: "null",
-				placeAddress: "null",
-			},
-			{
-				placeId: "ChIJaXD1f0yxbTkRvquNoSkESuk",
-				placeName: "Jantar Mantar - Jaipur",
-				placeAddress:
-					"Gangori Bazaar, J.D.A. Market, Pink City, Jaipur, Rajasthan 302002, India",
-			},
-		],
-		score: 232777.60604166667,
-		timeTaken: 6.283055555555555,
-	};
 	if (tripData.isLoading || !tripData.success) {
 		return <LoadingComp />;
 	} else {
@@ -76,10 +34,13 @@ export default function OneTripComp() {
 				<Grid container spacing={2}>
 					<Grid item xs={4}>
 						<TripPathsComp paths={tripData.data.tripInfo.result} />
+						<TripMembersComp
+							members={tripData.data.tripInfo.users}
+						/>
 					</Grid>
 					<Grid item xs={8}>
-						<TripChatComp />
-						<FinanceComp />
+						<TripChatComp tripId={params.tripId} />
+						{/* <FinanceComp /> */}
 					</Grid>
 				</Grid>
 			</>

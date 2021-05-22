@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { baseUrl } from "../../../baseUrl";
-const getTripFinance = createSlice({
-	name: "getTripFinance",
+import { fetchTripChat } from "./tripChat";
+const postMessage = createSlice({
+	name: "postMsg",
 	initialState: {
 		isLoading: false,
 		data: null,
@@ -24,11 +25,10 @@ const getTripFinance = createSlice({
 			...state,
 			isLoading: false,
 			errMess: action.message,
-			success: false,
 		}),
 	},
 });
-export const { sendFailed, sendRequest, sendSuccess } = getTripFinance.actions;
+export const { sendFailed, sendRequest, sendSuccess } = postMessage.actions;
 
 export const requestSend = () => {
 	return {
@@ -49,25 +49,28 @@ export const sendError = (message) => {
 		message,
 	};
 };
-export const fetchTripFinance = (tripId) => (dispatch) => {
+export const postMessageRequest = (data) => (dispatch) => {
 	dispatch(requestSend());
 	const call = {
-		url: baseUrl + `splitWise/${tripId}`,
-		method: "GET",
+		url: baseUrl + `messages/${data.tripId}`,
+		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 			Authorization: "Bearer " + localStorage.getItem("token"),
-			"Access-Control-Allow-Origin": "*",
+			// "Access-Control-Allow-Origin": "*",
+		},
+		data: {
+			message: data.msg,
 		},
 	};
 	return axios(call)
 		.then((response) => {
 			dispatch(receiveSend(response.data));
+			dispatch(fetchTripChat(data.tripId));
 		})
 		.catch((error) => {
-			alert(baseUrl + `tripInfo/${tripId}`);
 			dispatch(sendError(error.message));
 			alert(error);
 		});
 };
-export default getTripFinance.reducer;
+export default postMessage.reducer;
