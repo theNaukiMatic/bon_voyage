@@ -1,4 +1,11 @@
-import { AppBar, Box, Button, Toolbar, Typography } from "@material-ui/core";
+import {
+	AppBar,
+	Box,
+	Button,
+	Container,
+	Toolbar,
+	Typography,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -45,57 +52,71 @@ export default function NavBar() {
 	return (
 		<>
 			<div className={classes.root}>
+				<Box style={{ backgroundColor: "#fc9403", height: 10 }}></Box>
 				<AppBar position="static">
-					<Toolbar>
-						<Button color="inherit" onClick={handleHomeButton}>
-							<Typography variant="h6" className={classes.title}>
-								bon voyage
-							</Typography>
-						</Button>
-						<Box style={{ marginLeft: "auto" }}>
-							<Button
-								color="inherit"
-								variant="outlined"
-								onClick={handleTripButton}
-							>
-								Your Trips
-							</Button>
-						</Box>
-						<Box style={{ marginLeft: "10px" }}>
-							<Button
-								color="inherit"
-								variant="outlined"
-								onClick={handleSearchTrip}
-							>
-								Search Trips
-							</Button>
-						</Box>
-						<Box
-							display={loginVisible}
-							style={{ marginLeft: "10px" }}
-						>
-							<Button
-								color="inherit"
-								variant="outlined"
-								onClick={handleLoginButton}
-							>
-								LOGIN
-							</Button>
-						</Box>
+					<Container>
+						<Toolbar>
+							{/* <Button color="inherit"  > */}
 
-						<Box
-							display={logoutVisible}
-							style={{ marginLeft: "10px" }}
-						>
-							<Button
-								color="inherit"
-								variant="outlined"
-								onClick={handleLogoutButton}
+							<Box
+								style={{ cursor: "pointer" }}
+								onClick={handleHomeButton}
 							>
-								Logout
-							</Button>
-						</Box>
-					</Toolbar>
+								<Typography
+									variant="h5"
+									className={classes.title}
+								>
+									{" "}
+									bon voyage
+								</Typography>
+							</Box>
+
+							{/* </Button> */}
+							<Box style={{ marginLeft: "auto" }}>
+								<Button
+									color="inherit"
+									// variant="outlined"
+									onClick={handleTripButton}
+								>
+									Your Trips
+								</Button>
+							</Box>
+							<Box style={{ marginLeft: "10px" }}>
+								<Button
+									color="inherit"
+									// variant="outlined"
+									onClick={handleSearchTrip}
+								>
+									Search Trips
+								</Button>
+							</Box>
+							<Box
+								display={loginVisible}
+								style={{ marginLeft: "10px" }}
+							>
+								<Button
+									color="inherit"
+									// variant="outlined"
+									onClick={handleLoginButton}
+								>
+									LOGIN
+								</Button>
+							</Box>
+
+							<Box
+								display={logoutVisible}
+								style={{ marginLeft: "10px" }}
+							>
+								<Button
+									color="inherit"
+									// variant="outlined"
+									onClick={handleLogoutButton}
+								>
+									Logout
+								</Button>
+							</Box>
+						</Toolbar>
+					</Container>
 				</AppBar>
 			</div>
 		</>

@@ -21,10 +21,10 @@ export default function ChooseCity() {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const classes = useStyles();
-	const [cityName, setCityName] = React.useState("");
+	const [cityName, setCityName] = React.useState(" ");
 	const handleCitySearch = () => {
 		dispatch(getCityData(cityName));
-		history.push("/chooseInterest");
+		history.push(`/chooseInterest/${cityName}`);
 	};
 	return (
 		<>

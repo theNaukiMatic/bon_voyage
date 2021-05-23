@@ -40,7 +40,7 @@ export default function MainComp() {
 								<Route path="/login">
 									<LoginComp />
 								</Route>
-								<Route path="/chooseInterest">
+								<Route path="/chooseInterest/:cityName">
 									<InterestComp />
 								</Route>
 								<Route path="/myTrips">

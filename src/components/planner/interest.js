@@ -17,7 +17,7 @@ import ChooseCity from "./chooseCity";
 import { Rating } from "@material-ui/lab";
 import AddInfo from "./addInfo";
 import { sendTripForm } from "../../store/features/planner/sendTripSlice";
-import { Redirect, useHistory } from "react-router";
+import { Redirect, useHistory, useParams } from "react-router";
 const OnePlace = ({ city, addCity, removeCity }) => {
 	const [buttonText, setButtonText] = useState("Add This Place");
 	const [buttonStyle, setButtonStyle] = useState("outlined");
@@ -117,6 +117,7 @@ const DataDisplay = ({ data, addCity, removeCity, SelectedCity }) => {
 	const [tripName, setTripName] = useState("");
 
 	const temp = useSelector((state) => state.cityInfo.sendTrip);
+	const prams = useParams();
 	useEffect(() => {
 		if (temp.success) {
 			history.push("/trip");
@@ -149,6 +150,21 @@ const DataDisplay = ({ data, addCity, removeCity, SelectedCity }) => {
 				} else
 					return (
 						<>
+							<div class="mapouter">
+								<div class="gmap_canvas">
+									<iframe
+										title="gmap"
+										width="1225"
+										height="500"
+										src={`https://maps.google.com/maps?q=${prams.cityName}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+										frameborder="0"
+										scrolling="no"
+										marginheight="0"
+										marginwidth="0"
+										style={{ borderRadius: 20 }}
+									></iframe>
+								</div>
+							</div>
 							<AddInfo
 								tripDate={tripDate}
 								setTripDate={setTripDate}

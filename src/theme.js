@@ -6,5 +6,11 @@ export const theme = createMuiTheme({
 			main: "#fc9403",
 			contrastText: "#FFFFFF",
 		},
+		primary: {
+			main: "#2f70d6",
+		},
+	},
+	typography: {
+		fontFamily: ["Abril Fatface", "cursive"].join(","),
 	},
 });
