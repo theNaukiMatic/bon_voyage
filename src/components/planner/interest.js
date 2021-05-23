@@ -51,13 +51,13 @@ const OnePlace = ({ city, addCity, removeCity }) => {
 						// minHeight: "500px",
 					}}
 				>
-					{/* {city.photos !== undefined && (
+					{city.photos !== undefined && (
 						<img
 							// style={{ maxHeight: "400px", width: "100%" }}
 							src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${city.photos[0].photo_reference}&key=${gMapsKey}`}
 							alt={city.name}
 						/>
-					)} */}
+					)}
 
 					<CardActionArea
 						onClick={() =>

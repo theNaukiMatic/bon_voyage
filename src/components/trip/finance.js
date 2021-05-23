@@ -126,17 +126,18 @@ export default function TripFinance({ tripId }) {
 						backgroundColor: "lightgrey",
 					}}
 				>
-					{chats.data.splitWise.map((msg) => (
-						<>
-							{(() => {
-								if (msg.author._id === myId) {
-									return <MsgMine msg={msg} />;
-								} else {
-									return <MsgOther msg={msg} />;
-								}
-							})()}
-						</>
-					))}
+					{chats.data.splitWise !== undefined &&
+						chats.data.splitWise.map((msg) => (
+							<>
+								{(() => {
+									if (msg.author._id === myId) {
+										return <MsgMine msg={msg} />;
+									} else {
+										return <MsgOther msg={msg} />;
+									}
+								})()}
+							</>
+						))}
 				</Box>
 				<Paper elevation={10} style={{ padding: 10 }}>
 					<Box display="flex">

@@ -6,7 +6,7 @@ import {
 	TextField,
 	Typography,
 } from "@material-ui/core";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingComp from "../loadingComp";
 import { postMessageRequest } from "../../store/features/trip/postMsg";
@@ -90,9 +90,9 @@ export default function TripChatComp({ tripId }) {
 	const chats = useSelector((state) => state.trips.tripChat);
 	function updateScroll() {
 		var element = document.getElementById("charBox");
-		element.scrollTop = element.scrollHeight;
+		if (element != null) element.scrollTop = element.scrollHeight;
 	}
-	useLayoutEffect(() => {
+	useEffect(() => {
 		if (!(chats.isLoading || !chats.success)) updateScroll();
 	}, [chats]);
 	const dispatch = useDispatch();
