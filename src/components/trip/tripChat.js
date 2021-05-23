@@ -6,7 +6,7 @@ import {
 	TextField,
 	Typography,
 } from "@material-ui/core";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingComp from "../loadingComp";
 import { postMessageRequest } from "../../store/features/trip/postMsg";

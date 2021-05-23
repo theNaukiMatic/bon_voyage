@@ -1,9 +1,7 @@
 import {
 	Button,
 	Divider,
-	FormControl,
 	Grid,
-	makeStyles,
 	Paper,
 	TextField,
 	Typography,
@@ -16,12 +14,6 @@ import { getStartLoc } from "../../store/features/planner/startLocSlice";
 import { useDispatch } from "react-redux";
 
 import React from "react";
-const useStyles = makeStyles((theme) => ({
-	formControl: {
-		// margin: theme.spacing(1),
-		minWidth: 240,
-	},
-}));
 
 export default function AddInfo({
 	tripDate,
@@ -33,7 +25,6 @@ export default function AddInfo({
 	startLocId,
 	setStartLocId,
 }) {
-	const classes = useStyles();
 	const dispatch = useDispatch();
 	const [startLoc, setStartLoc] = React.useState("");
 	const handleStartLoc = () => {

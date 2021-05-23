@@ -4,7 +4,6 @@ import ChooseCity from "./planner/chooseCity";
 import SearchTripComp from "./searchTrips";
 
 export default function HomeComp() {
-	const place = "bikaner";
 	return (
 		<>
 			<Typography variant="h1"> Welcome to bon voyage !</Typography>
