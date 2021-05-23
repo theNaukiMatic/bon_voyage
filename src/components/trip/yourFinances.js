@@ -17,45 +17,46 @@ export default function YourFinancesComp(tripId) {
 				>
 					Calculated Finances
 				</Typography>
-				{finance.data.splitWise.map((member) => {
-					return (
-						<>
-							<Paper
-								elevation={10}
-								style={{
-									padding: 20,
-									marginBottom: 20,
-									borderRadius: 20,
-								}}
-							>
-								<Typography
+				{finance.data.splitWise !== undefined &&
+					finance.data.splitWise.map((member) => {
+						return (
+							<>
+								<Paper
+									elevation={10}
 									style={{
-										fontWeight: 600,
+										padding: 20,
+										marginBottom: 20,
+										borderRadius: 20,
 									}}
-									variant="h6"
 								>
-									{member.username}
-								</Typography>
-								{member.toPay >= 0 && (
 									<Typography
-										variant="h4"
-										style={{ color: "red" }}
+										style={{
+											fontWeight: 600,
+										}}
+										variant="h6"
 									>
-										owes ₹ {member.toPay}
+										{member.username}
 									</Typography>
-								)}
-								{member.toPay < 0 && (
-									<Typography
-										variant="h4"
-										style={{ color: "green" }}
-									>
-										will get ₹ {-member.toPay}
-									</Typography>
-								)}
-							</Paper>
-						</>
-					);
-				})}
+									{member.toPay >= 0 && (
+										<Typography
+											variant="h4"
+											style={{ color: "red" }}
+										>
+											owes ₹ {member.toPay}
+										</Typography>
+									)}
+									{member.toPay < 0 && (
+										<Typography
+											variant="h4"
+											style={{ color: "green" }}
+										>
+											will get ₹ {-member.toPay}
+										</Typography>
+									)}
+								</Paper>
+							</>
+						);
+					})}
 			</Paper>
 		);
 	}
